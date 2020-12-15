@@ -132,6 +132,40 @@ class CalcNode_ReadInt(CalcNode):
         print(rpm)
         return rpm
 
+
+
+@register_node(OP_NODE_WRITEFLOAT)
+class CalcNode_WriteFloat(CalcNode3):
+    icon = "icons/wpm.png"
+    op_code = OP_NODE_WRITEFLOAT
+    op_title = "Writing Memory (FLOAT)"
+    content_label = "W"
+    content_label_objname = "calc_node_bg"
+
+    def evalOperation(self, input1, input2, input3):
+        process = input1
+        address = input2
+        valToWrite = float(input3)
+        process.write_float(address, valToWrite)
+
+        return "WPM Successful"
+
+@register_node(OP_NODE_READFLOAT)
+class CalcNode_ReadFloat(CalcNode):
+    icon = "icons/rpm.png"
+    op_code = OP_NODE_READFLOAT
+    op_title = "Reading Memory (FLOAT)"
+    content_label = "R"
+    content_label_objname = "calc_node_bg"
+
+    def evalOperation(self, input1, input2):
+        process = input1
+        address = input2
+        rpm = process.read_float(address)
+        print(rpm)
+        return rpm
+
+
 def GetPtrAddr(base, offsets, process):
     addr = process.read_int(base)
     for i in offsets:

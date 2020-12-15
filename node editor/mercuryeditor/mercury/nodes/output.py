@@ -51,7 +51,7 @@ class CalcNode_Print(CalcNode):
     icon = "icons/out.png"
     op_code = OP_NODE_PRINT
     op_title = "Print"
-    content_label_objname = "calc_node_print"
+    content_label_objname = "calc_node_output" #content_label_objname = "calc_node_print"
 
     def __init__(self, scene):
         super().__init__(scene, inputs=[1], outputs=[])
