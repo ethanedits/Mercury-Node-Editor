@@ -1,0 +1,426 @@
+{
+    "id": 1257308092352,
+    "scene_width": 64000,
+    "scene_height": 64000,
+    "nodes": [
+        {
+            "id": 1257308094032,
+            "title": "Process Handle",
+            "pos_x": -88.0,
+            "pos_y": -188.0,
+            "inputs": [
+                {
+                    "id": 1257308094320,
+                    "index": 0,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1257308094368,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 1
+                }
+            ],
+            "content": {},
+            "op_code": 11
+        },
+        {
+            "id": 1257308094272,
+            "title": "Input (HEX)",
+            "pos_x": -311.99999999999994,
+            "pos_y": 105.0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 1257242538192,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 3
+                }
+            ],
+            "content": {
+                "value": "0x22C"
+            },
+            "op_code": 3
+        },
+        {
+            "id": 1257242538144,
+            "title": "Input (HEX)",
+            "pos_x": -298.99999999999994,
+            "pos_y": 285.0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 1257242538432,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 3
+                }
+            ],
+            "content": {
+                "value": "0x390"
+            },
+            "op_code": 3
+        },
+        {
+            "id": 1257242538384,
+            "title": "List4 (HEX)",
+            "pos_x": -67.39160156250023,
+            "pos_y": 142.30273437500045,
+            "inputs": [
+                {
+                    "id": 1257242538672,
+                    "index": 0,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                },
+                {
+                    "id": 1257242538720,
+                    "index": 1,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                },
+                {
+                    "id": 1257242538768,
+                    "index": 2,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                },
+                {
+                    "id": 1257242538816,
+                    "index": 3,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1257308092448,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 1
+                }
+            ],
+            "content": {},
+            "op_code": 19
+        },
+        {
+            "id": 1257308092880,
+            "title": "Writing Memory (INT)",
+            "pos_x": 564.0,
+            "pos_y": -84.0,
+            "inputs": [
+                {
+                    "id": 1257308092736,
+                    "index": 0,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                },
+                {
+                    "id": 1257308092784,
+                    "index": 1,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                },
+                {
+                    "id": 1257308092832,
+                    "index": 2,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1257308093072,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 1
+                }
+            ],
+            "content": {},
+            "op_code": 13
+        },
+        {
+            "id": 1257308092688,
+            "title": "Input (HEX)",
+            "pos_x": -62.0,
+            "pos_y": 23.0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 1257308093312,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 3
+                }
+            ],
+            "content": {
+                "value": "0x000FAB48"
+            },
+            "op_code": 3
+        },
+        {
+            "id": 1257308093264,
+            "title": "Input (Int)",
+            "pos_x": 292.0,
+            "pos_y": 62.0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 1257308092976,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 3
+                }
+            ],
+            "content": {
+                "value": "69"
+            },
+            "op_code": 1
+        },
+        {
+            "id": 1257308092928,
+            "title": "Get Pointer Address",
+            "pos_x": 229.0,
+            "pos_y": -47.0,
+            "inputs": [
+                {
+                    "id": 1257308091248,
+                    "index": 0,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                },
+                {
+                    "id": 1257308091344,
+                    "index": 1,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                },
+                {
+                    "id": 1257308091392,
+                    "index": 2,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                },
+                {
+                    "id": 1257308091440,
+                    "index": 3,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1257308091488,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 1
+                }
+            ],
+            "content": {},
+            "op_code": 15
+        },
+        {
+            "id": 1257308091680,
+            "title": "Get Module",
+            "pos_x": -51.0,
+            "pos_y": -73.0,
+            "inputs": [
+                {
+                    "id": 1257308091920,
+                    "index": 0,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                },
+                {
+                    "id": 1257308091968,
+                    "index": 1,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
+                }
+            ],
+            "outputs": [
+                {
+                    "id": 1257308092016,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 1
+                }
+            ],
+            "content": {},
+            "op_code": 12
+        },
+        {
+            "id": 1257308091872,
+            "title": "Input (HEX)",
+            "pos_x": -312.99999999999994,
+            "pos_y": 199.0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 1257308092256,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 3
+                }
+            ],
+            "content": {
+                "value": "0xEC"
+            },
+            "op_code": 3
+        },
+        {
+            "id": 1257308092208,
+            "title": "Input (HEX)",
+            "pos_x": -296.99999999999994,
+            "pos_y": 375.9999999999999,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 1257308091200,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 3
+                }
+            ],
+            "content": {
+                "value": "0x3C8"
+            },
+            "op_code": 3
+        },
+        {
+            "id": 1257308091296,
+            "title": "Input (String)",
+            "pos_x": -354.0,
+            "pos_y": -196.0,
+            "inputs": [],
+            "outputs": [
+                {
+                    "id": 1257308090768,
+                    "index": 0,
+                    "multi_edges": true,
+                    "position": 5,
+                    "socket_type": 3
+                }
+            ],
+            "content": {
+                "value": "ac_client.exe"
+            },
+            "op_code": 2
+        }
+    ],
+    "edges": [
+        {
+            "id": 1257308090528,
+            "edge_type": 2,
+            "start": 1257308094368,
+            "end": 1257308091920
+        },
+        {
+            "id": 1257308090816,
+            "edge_type": 2,
+            "start": 1257308091488,
+            "end": 1257308092784
+        },
+        {
+            "id": 1257308090864,
+            "edge_type": 2,
+            "start": 1257308091200,
+            "end": 1257242538816
+        },
+        {
+            "id": 1257308091008,
+            "edge_type": 2,
+            "start": 1257308090768,
+            "end": 1257308094320
+        },
+        {
+            "id": 1257308091152,
+            "edge_type": 2,
+            "start": 1257308092832,
+            "end": 1257308092976
+        },
+        {
+            "id": 1257308090720,
+            "edge_type": 2,
+            "start": 1257308092256,
+            "end": 1257242538720
+        },
+        {
+            "id": 1257237368352,
+            "edge_type": 2,
+            "start": 1257242538432,
+            "end": 1257242538768
+        },
+        {
+            "id": 1257306500880,
+            "edge_type": 2,
+            "start": 1257308092016,
+            "end": 1257308091344
+        },
+        {
+            "id": 1257306500592,
+            "edge_type": 2,
+            "start": 1257242538192,
+            "end": 1257242538672
+        },
+        {
+            "id": 1257306500736,
+            "edge_type": 2,
+            "start": 1257308091392,
+            "end": 1257308093312
+        },
+        {
+            "id": 1257306501072,
+            "edge_type": 2,
+            "start": 1257308092448,
+            "end": 1257308091440
+        },
+        {
+            "id": 1257306501024,
+            "edge_type": 2,
+            "start": 1257308090768,
+            "end": 1257308091968
+        },
+        {
+            "id": 1257306499776,
+            "edge_type": 2,
+            "start": 1257308092736,
+            "end": 1257308094368
+        },
+        {
+            "id": 1257306499488,
+            "edge_type": 2,
+            "start": 1257308094368,
+            "end": 1257308091248
+        }
+    ]
+}
