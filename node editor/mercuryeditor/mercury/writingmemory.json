@@ -329,6 +329,13 @@
                     "multi_edges": false,
                     "position": 2,
                     "socket_type": 2
+                },
+                {
+                    "id": 2305934912240,
+                    "index": 1,
+                    "multi_edges": false,
+                    "position": 2,
+                    "socket_type": 2
                 }
             ],
             "outputs": [

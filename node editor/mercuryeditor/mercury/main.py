@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import QtWidgets, QtGui
 from PyQt5.QtCore import *
 
+
 sys.path.insert(0, os.path.join( os.path.dirname(__file__), "..", ".." ))
 
 from mercuryeditor.mercury.calc_window import CalculatorWindow

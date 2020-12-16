@@ -306,6 +306,10 @@ class Scene(Serializable):
             file.write( json.dumps( self.serialize(), indent=4 ) )
             print("saving to", filename, "was successfull.")
 
+            #DISCORD RICH PRESENCE
+
+            print(str(filename))
+
             self.has_been_modified = False
             self.filename = filename
 
@@ -320,6 +324,9 @@ class Scene(Serializable):
 
         with open(filename, "r") as file:
             raw_data = file.read()
+            print("Opened " + filename)
+            #DISCORD RICH PRESENCE
+            
             try:
                 data = json.loads(raw_data, encoding='utf-8')
                 self.filename = filename
