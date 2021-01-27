@@ -1,7 +1,7 @@
 # Mercury Node Editor
  A Python based Node Editor for Reading/Writing Memory
  
- Required Packages: PyQt5, Pymem
+ Required Packages: PyQt5, Pymem, Keyboard
  
  To actually use this project/tool go into **node editor < mercury < main.py** (run main.py)
  
