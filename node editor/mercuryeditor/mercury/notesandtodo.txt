@@ -1,0 +1,40 @@
+-Change Memory from using Pymem to custom memory library
+
+-Convert nodes to C++
+
+-Make only one WPM and RPM node, have each node contain a dropdown to change its type
+
+-Variable System
+[
+    -Make a system to create variable nodes in the menu, and instead of using the get variable node, it will create the node for you in a "variables" menu
+    -Set Variable node ✔
+    -Get Variable node ✔
+]
+
+-Merge output and print nodes ✔
+
+-Fit nodes with strings to the size of string, so that text doesnt get cut off
+
+-Functions
+
+-For Loops
+
+-If statements
+
+-Add ability for users to add a custom memory library (.dll with function exports)
+
+-Add support for other resolutions
+
+-Refresh all nodes button
+
+-All nodes that require strings should be the first socket, the value should always be the second ✔
+
+-Change name of Reading Memory to Read Memory, and Writing Memory to Write Memory ✔
+
+-Add Comments
+
+-Make snapping with ctrl happen without holding ctrl (Can be changed in node_graphics_view.py line 124) ✔
+
+BUGS:
+
+-Loading projects is not working correctly ✔

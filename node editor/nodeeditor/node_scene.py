@@ -2,17 +2,15 @@
 """
 A module containing the representation of the NodeEditor's Scene
 """
-import os
-import json
+import os, sys, json
 from collections import OrderedDict
-from nodeeditor.utils import dumpException
+from nodeeditor.utils import dumpException, pp
 from nodeeditor.node_serializable import Serializable
 from nodeeditor.node_graphics_scene import QDMGraphicsScene
 from nodeeditor.node_node import Node
 from nodeeditor.node_edge import Edge
 from nodeeditor.node_scene_history import SceneHistory
 from nodeeditor.node_scene_clipboard import SceneClipboard
-from nodeeditor.utils import pp
 
 
 DEBUG_REMOVE_WARNINGS = False
@@ -92,7 +90,7 @@ class Scene(Serializable):
         self.grScene = QDMGraphicsScene(self)
         self.grScene.setGrScene(self.scene_width, self.scene_height)
 
-    def getNodeByID(self, node_id:int):
+    def getNodeByID(self, node_id: int):
         """
         Find node in the scene according to provided `node_id`
 
@@ -106,11 +104,11 @@ class Scene(Serializable):
         return None
 
 
-    def setSilentSelectionEvents(self, value:bool=True):
+    def setSilentSelectionEvents(self, value: bool=True):
         """Calling this can suppress onItemSelected events to be triggered. This is useful when working with clipboard"""
         self._silent_selection_events = value
 
-    def onItemSelected(self, silent:bool=False):
+    def onItemSelected(self, silent: bool=False):
         """
         Handle Item selection and trigger event `Item Selected`
 
@@ -129,7 +127,7 @@ class Scene(Serializable):
                 # and store history as a last step always
                 self.history.storeHistory("Selection Changed")
 
-    def onItemsDeselected(self, silent:bool=False):
+    def onItemsDeselected(self, silent: bool=False):
         """
         Handle Items deselection and trigger event `Items Deselected`
 
@@ -169,7 +167,7 @@ class Scene(Serializable):
         """
         return self.grScene.selectedItems()
 
-    def doDeselectItems(self, silent:bool=False) -> None:
+    def doDeselectItems(self, silent: bool=False) -> None:
         """
         Deselects everything in scene
 
@@ -182,7 +180,7 @@ class Scene(Serializable):
             self.onItemsDeselected()
 
     # our helper listener functions
-    def addHasBeenModifiedListener(self, callback:'function'):
+    def addHasBeenModifiedListener(self, callback: 'function'):
         """
         Register callback for `Has Been Modified` event
 
@@ -190,7 +188,7 @@ class Scene(Serializable):
         """
         self._has_been_modified_listeners.append(callback)
 
-    def addItemSelectedListener(self, callback:'function'):
+    def addItemSelectedListener(self, callback: 'function'):
         """
         Register callback for `Item Selected` event
 
@@ -198,7 +196,7 @@ class Scene(Serializable):
         """
         self._item_selected_listeners.append(callback)
 
-    def addItemsDeselectedListener(self, callback:'function'):
+    def addItemsDeselectedListener(self, callback: 'function'):
         """
         Register callback for `Items Deselected` event
 
@@ -206,7 +204,7 @@ class Scene(Serializable):
         """
         self._items_deselected_listeners.append(callback)
 
-    def addDragEnterListener(self, callback:'function'):
+    def addDragEnterListener(self, callback: 'function'):
         """
         Register callback for `Drag Enter` event
 
@@ -214,7 +212,7 @@ class Scene(Serializable):
         """
         self.getView().addDragEnterListener(callback)
 
-    def addDropListener(self, callback:'function'):
+    def addDropListener(self, callback: 'function'):
         """
         Register callback for `Drop` event
 
@@ -238,7 +236,7 @@ class Scene(Serializable):
         """
         return self.grScene.views()[0]
 
-    def getItemAt(self, pos:'QPointF'):
+    def getItemAt(self, pos: 'QPointF'):
         """Shortcut for retrieving item at provided `Scene` position
 
         :param pos: scene position
@@ -248,7 +246,7 @@ class Scene(Serializable):
         """
         return self.getView().itemAt(pos)
 
-    def addNode(self, node:Node):
+    def addNode(self, node: Node):
         """Add :class:`~nodeeditor.node_node.Node` to this `Scene`
 
         :param node: :class:`~nodeeditor.node_node.Node` to be added to this `Scene`
@@ -256,7 +254,7 @@ class Scene(Serializable):
         """
         self.nodes.append(node)
 
-    def addEdge(self, edge:Edge):
+    def addEdge(self, edge: Edge):
         """Add :class:`~nodeeditor.node_edge.Edge` to this `Scene`
 
         :param edge: :class:`~nodeeditor.node_edge.Edge` to be added to this `Scene`
@@ -264,7 +262,7 @@ class Scene(Serializable):
         """
         self.edges.append(edge)
 
-    def removeNode(self, node:Node):
+    def removeNode(self, node: Node):
         """Remove :class:`~nodeeditor.node_node.Node` from this `Scene`
 
         :param node: :class:`~nodeeditor.node_node.Node` to be removed from this `Scene`
@@ -275,7 +273,7 @@ class Scene(Serializable):
             if DEBUG_REMOVE_WARNINGS: print("!W:", "Scene::removeNode", "wanna remove nodeeditor", node,
                                             "from self.nodes but it's not in the list!")
 
-    def removeEdge(self, edge:Edge):
+    def removeEdge(self, edge: Edge):
         """Remove :class:`~nodeeditor.node_edge.Edge` from this `Scene`
 
         :param edge: :class:`~nodeeditor.node_edge.Edge` to be remove from this `Scene`
@@ -295,7 +293,7 @@ class Scene(Serializable):
         self.has_been_modified = False
 
 
-    def saveToFile(self, filename:str):
+    def saveToFile(self, filename: str):
         """
         Save this `Scene` to the file on disk.
 
@@ -306,14 +304,10 @@ class Scene(Serializable):
             file.write( json.dumps( self.serialize(), indent=4 ) )
             print("saving to", filename, "was successfull.")
 
-            #DISCORD RICH PRESENCE
-
-            print(str(filename))
-
             self.has_been_modified = False
             self.filename = filename
 
-    def loadFromFile(self, filename:str):
+    def loadFromFile(self, filename: str):
         """
         Load `Scene` from a file on disk
 
@@ -324,11 +318,11 @@ class Scene(Serializable):
 
         with open(filename, "r") as file:
             raw_data = file.read()
-            print("Opened " + filename)
-            #DISCORD RICH PRESENCE
-            
             try:
-                data = json.loads(raw_data, encoding='utf-8')
+                if sys.version_info >= (3, 9):
+                    data = json.loads(raw_data)
+                else:
+                    data = json.loads(raw_data, encoding='utf-8')
                 self.filename = filename
                 self.deserialize(data)
                 self.has_been_modified = False
@@ -341,7 +335,7 @@ class Scene(Serializable):
         """Return the class representing Edge. Override me if needed"""
         return Edge
 
-    def setNodeClassSelector(self, class_selecting_function:'functon') -> 'Node class type':
+    def setNodeClassSelector(self, class_selecting_function: 'functon') -> 'Node class type':
         """
         Set the function which decides what `Node` class to instantiate when deserializing `Scene`.
         If not set, we will always instantiate :class:`~nodeeditor.node_node.Node` for each `Node` in the `Scene`
@@ -353,7 +347,7 @@ class Scene(Serializable):
         """
         self.node_class_selector = class_selecting_function
 
-    def getNodeClassFromData(self, data:dict) -> 'Node class instance':
+    def getNodeClassFromData(self, data: dict) -> 'Node class instance':
         """
         Takes `Node` serialized data and determines which `Node Class` to instantiate according the description
         in the serialized Node
@@ -378,7 +372,7 @@ class Scene(Serializable):
             ('edges', edges),
         ])
 
-    def deserialize(self, data:dict, hashmap:dict={}, restore_id:bool=True, *args, **kwargs) -> bool:
+    def deserialize(self, data: dict, hashmap: dict={}, restore_id: bool=True, *args, **kwargs) -> bool:
         hashmap = {}
 
         if restore_id: self.id = data['id']

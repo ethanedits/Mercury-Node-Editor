@@ -166,6 +166,41 @@ class CalcNode_InputStr(CalcNode):
 
         return self.value
 
+@register_node(OP_NODE_GETVARIABLE)
+class CalcNode_GetVariable(CalcNode):
+    icon = ".icons\\in.png"
+    op_code = OP_NODE_GETVARIABLE
+    op_title = "Get Variable"
+    content_label_objname = "calc_node_input" #content_label_objname = "calc_node_inputstr"
+
+    def __init__(self, scene):
+        super().__init__(scene, inputs=[], outputs=[3])
+        self.eval()
+
+    def initInnerClasses(self):
+        self.content = CalcInputStrContent(self)
+        self.grNode = CalcGraphicsNode(self)
+        self.content.edit.textChanged.connect(self.onInputChanged)
+
+    def evalImplementation(self):
+        u_value = self.content.edit.text()
+        s_value = str(u_value)
+        #self.value = s_value
+
+        self.value = CUSTOMVARIABLES.get(s_value)
+
+        self.markDirty(False)
+        self.markInvalid(False)
+
+        self.markDescendantsInvalid(False)
+        self.markDescendantsDirty()
+
+        self.grNode.setToolTip("Gets a variable with its name")
+
+        self.evalChildren()
+
+        return self.value
+
 #HEX INPUT
 
 class CalcInputHexContent(QDMNodeContentWidget):
@@ -207,9 +242,10 @@ class CalcNode_InputHex(CalcNode):
 
     def evalImplementation(self):
         u_value = self.content.edit.text()
+        int_value = int(u_value, 0)
         f_value = int(u_value, 16)
         s_value = hex(f_value)
-        self.value = s_value
+        self.value = int_value
         self.markDirty(False)
         self.markInvalid(False)
 
@@ -219,5 +255,6 @@ class CalcNode_InputHex(CalcNode):
         self.grNode.setToolTip("Hex Input")
 
         self.evalChildren()
-
-        return self.value
+        print(int_value)
+        print(type(int_value))
+        return int_value

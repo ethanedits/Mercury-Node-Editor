@@ -1,3 +1,4 @@
+from atexit import register
 from PyQt5.QtCore import *
 from mercuryeditor.mercury.calc_conf import *
 from mercuryeditor.mercury.calc_node_base import *
@@ -17,101 +18,30 @@ class CalcNode_ProcessHandle(CalcNode2):
         process = pymem.Pymem(input1)
         return process
 
-@register_node(OP_NODE_LIST5)
-class CalcNode_List5(CalcNode5):
-    icon = "icons/list.png"
-    op_code = OP_NODE_LIST5
-    op_title = "List5 (HEX)"
-    content_label = "L"
+
+@register_node(OP_NODE_SETVARIABLE)
+class CalcNode_SetVariable(VarNode):
+    op_code = OP_NODE_SETVARIABLE
+    op_title = "Set Variable"
+    content_label = "V"
     content_label_objname = "calc_node_bg"
 
-    def evalOperation(self, input1,input2,input3,input4,input5):
-        list = []
-        in1 = int(input1, 16)
-        in2 = int(input2, 16)
-        in3 = int(input3, 16)
-        in4 = int(input4, 16)
-        in5 = int(input5, 16)
-
-        list.append(in1)
-        list.append(in2)
-        list.append(in3)
-        list.append(in4)
-        list.append(in5)
-
-        return list
-
-@register_node(OP_NODE_LIST4)
-class CalcNode_List4(CalcNode4):
-    icon = "icons/list.png"
-    op_code = OP_NODE_LIST4
-    op_title = "List4 (HEX)"
-    content_label = "L"
-    content_label_objname = "calc_node_bg"
-
-    def evalOperation(self, input1,input2,input3,input4):
-        list = []
-        in1 = int(input1, 16)
-        in2 = int(input2, 16)
-        in3 = int(input3, 16)
-        in4 = int(input4, 16)
-
-        list.append(in1)
-        list.append(in2)
-        list.append(in3)
-        list.append(in4)
-
-        return list
-
-@register_node(OP_NODE_LIST3)
-class CalcNode_List3(CalcNode3):
-    icon = "icons/list.png"
-    op_code = OP_NODE_LIST3
-    op_title = "List3 (HEX)"
-    content_label = "L"
-    content_label_objname = "calc_node_bg"
-
-    def evalOperation(self, input1,input2,input3):
-        list = []
-        in1 = int(input1, 16)
-        in2 = int(input2, 16)
-        in3 = int(input3, 16)
-
-        list.append(in1)
-        list.append(in2)
-        list.append(in3)
-
-        return list
-
-@register_node(OP_NODE_LIST2)
-class CalcNode_List2(CalcNode):
-    icon = "icons/list.png"
-    op_code = OP_NODE_LIST2
-    op_title = "List2 (HEX)"
-    content_label = "L"
-    content_label_objname = "calc_node_bg"
-
-    def evalOperation(self, input1,input2):
-        list = []
-        in1 = int(input1, 16)
-        in2 = int(input2, 16)
-
-        list.append(in1)
-        list.append(in2)
-
-        return list
+    def evalOperation(self, input1, input2):
+        CUSTOMVARIABLES[input1] = input2
+        self.value = input2
+        return self.value
 
 @register_node(OP_NODE_WRITEINT)
 class CalcNode_WriteInt(CalcNode3):
     icon = "icons/wpm.png"
     op_code = OP_NODE_WRITEINT
-    op_title = "Writing Memory (INT)"
+    op_title = "Write Memory (INT)"
     content_label = "W"
     content_label_objname = "calc_node_bg"
 
     def evalOperation(self, input1, input2, input3):
         process = input1
-        address = input2
+        address = int(input2)
         valToWrite = int(input3)
         process.write_int(address, valToWrite)
 
@@ -121,7 +51,7 @@ class CalcNode_WriteInt(CalcNode3):
 class CalcNode_ReadInt(CalcNode):
     icon = "icons/rpm.png"
     op_code = OP_NODE_READINT
-    op_title = "Reading Memory (INT)"
+    op_title = "Read Memory (INT)"
     content_label = "R"
     content_label_objname = "calc_node_bg"
 
@@ -129,16 +59,15 @@ class CalcNode_ReadInt(CalcNode):
         process = input1
         address = input2
         rpm = process.read_int(address)
-        print(rpm)
-        return rpm
-
-
+        int_rpm = int(rpm)
+        print(type(int_rpm))
+        return int_rpm
 
 @register_node(OP_NODE_WRITEFLOAT)
 class CalcNode_WriteFloat(CalcNode3):
     icon = "icons/wpm.png"
     op_code = OP_NODE_WRITEFLOAT
-    op_title = "Writing Memory (FLOAT)"
+    op_title = "Write Memory (FLOAT)"
     content_label = "W"
     content_label_objname = "calc_node_bg"
 
@@ -154,7 +83,7 @@ class CalcNode_WriteFloat(CalcNode3):
 class CalcNode_ReadFloat(CalcNode):
     icon = "icons/rpm.png"
     op_code = OP_NODE_READFLOAT
-    op_title = "Reading Memory (FLOAT)"
+    op_title = "Read Memory (FLOAT)"
     content_label = "R"
     content_label_objname = "calc_node_bg"
 
@@ -165,7 +94,6 @@ class CalcNode_ReadFloat(CalcNode):
         print(rpm)
         return rpm
 
-
 def GetPtrAddr(base, offsets, process):
     addr = process.read_int(base)
     for i in offsets:
@@ -173,8 +101,8 @@ def GetPtrAddr(base, offsets, process):
             addr = process.read_int(addr + i)
     return addr + offsets[-1]
 
-@register_node(OP_NODE_GETPOINTERADDRESS)
-class CalcNode_GetPointerAddress(CalcNode4):
+#@register_node(OP_NODE_GETPOINTERADDRESS)
+#class CalcNode_GetPointerAddress(CalcNode4):
     icon = "icons/getpointeraddress.png"
     op_code = OP_NODE_GETPOINTERADDRESS
     op_title = "Get Pointer Address"
@@ -199,8 +127,8 @@ class CalcNode_GetModule(CalcNode):
     content_label_objname = "calc_node_bg"
 
     def evalOperation(self, input1, input2):
-        proc = input1
-        module = pymem.process.module_from_name(proc.process_handle, input2).lpBaseOfDll
+        proc = input2
+        module = pymem.process.module_from_name(proc.process_handle, input1).lpBaseOfDll
         print(int(module))
         return int(module)
 
@@ -213,7 +141,7 @@ class CalcNode_Add(CalcNode):
     content_label_objname = "calc_node_bg"
 
     def evalOperation(self, input1, input2):
-        return input1 + input2
+        return int(input1) + int(input2)
 
 #Append String
 @register_node(OP_NODE_APPEND)
@@ -225,8 +153,8 @@ class CalcNode_Append(CalcNode):
     content_label_objname = "calc_node_bg"
 
     def evalOperation(self, input1, input2):
-        print(str(input1) + " " + str(input2))
-        return str(input1) + " " + str(input2)
+        #print(str(input1) + " " + str(input2))
+        return str(input1) + "" + str(input2)
 
 @register_node(OP_NODE_SUB)
 class CalcNode_Sub(CalcNode):

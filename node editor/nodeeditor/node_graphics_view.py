@@ -121,7 +121,8 @@ class QDMGraphicsView(QGraphicsView):
 
     def isSnappingEnabled(self, event: 'QInputEvent' = None) -> bool:
         """Returns ``True`` if snapping is currently enabled"""
-        return EDGE_SNAPPING and (event.modifiers() & Qt.CTRL) if event else True
+        return True
+        #return EDGE_SNAPPING and (event.modifiers() & Qt.CTRL) if event else True
 
     def resetMode(self):
         """Helper function to re-set the grView's State Machine state to the default"""

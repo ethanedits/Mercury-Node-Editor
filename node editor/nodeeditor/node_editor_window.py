@@ -43,6 +43,7 @@ class NodeEditorWindow(QMainWindow):
         # set window properties
         # self.setGeometry(200, 200, 800, 600)
         self.setTitle()
+        
         self.show()
 
     def sizeHint(self):
